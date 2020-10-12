@@ -22,7 +22,6 @@ func main() {
 		MaxHeaderBytes: maxHeaderBytes,
 	}
 
-	log.Printf("[info] star")
 	router.HandleFunc("/people", controllers.GetPeopleEndpoint).Methods("GET")
 	router.HandleFunc("/people/{id}", controllers.GetPersonEndpoint).Methods("GET")
 	router.HandleFunc("/people/{id}", controllers.CreatePersonEndpoint).Methods("POST")
