@@ -1,6 +1,6 @@
 package models
 
 type Address struct {
-	City  string `json:"city,omitempty"`
-	State string `json:"state,omitempty"`
+	City  string `json:"city"`
+	State string `json:"state"`
 }
