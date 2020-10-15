@@ -11,7 +11,7 @@ import (
 
 func main() {
 	router := mux.NewRouter()
-	endPoint := fmt.Sprintf(":%d", 8080)
+	endPoint := fmt.Sprintf(":%d", 9000)
 	maxHeaderBytes := 1 << 20
 	personHandler := handler.Person{}
 
@@ -25,7 +25,7 @@ func main() {
 
 	router.HandleFunc("/people", personHandler.GetPeopleEndpoint).Methods("GET")
 	router.HandleFunc("/people/{id}", personHandler.GetPersonEndpoint).Methods("GET")
-	router.HandleFunc("/people/{id}", personHandler.CreatePersonEndpoint).Methods("POST")
+	router.HandleFunc("/people", personHandler.CreatePersonEndpoint).Methods("POST")
 	router.HandleFunc("/people/{id}", personHandler.DeletePersonEndpoint).Methods("DELETE")
 	log.Fatal(server.ListenAndServe())
 }
