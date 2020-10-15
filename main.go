@@ -5,7 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"./controllers"
+	"github.com/FandiAR/simple-crud-golang/controllers"
+
 	"github.com/gorilla/mux"
 )
 
