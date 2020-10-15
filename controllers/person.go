@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"../models"
+	"github.com/FandiAR/simple-crud-golang/models"
 
 	"github.com/gorilla/mux"
 )
