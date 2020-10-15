@@ -13,6 +13,7 @@ func main() {
 	router := mux.NewRouter()
 	endPoint := fmt.Sprintf(":%d", 8080)
 	maxHeaderBytes := 1 << 20
+	personHandler := handler.Person{}
 
 	server := &http.Server{
 		Addr:           endPoint,
@@ -22,9 +23,9 @@ func main() {
 		MaxHeaderBytes: maxHeaderBytes,
 	}
 
-	router.HandleFunc("/people", handler.GetPeopleEndpoint).Methods("GET")
-	router.HandleFunc("/people/{id}", handler.GetPersonEndpoint).Methods("GET")
-	router.HandleFunc("/people/{id}", handler.CreatePersonEndpoint).Methods("POST")
-	router.HandleFunc("/people/{id}", handler.DeletePersonEndpoint).Methods("DELETE")
+	router.HandleFunc("/people", personHandler.GetPeopleEndpoint).Methods("GET")
+	router.HandleFunc("/people/{id}", personHandler.GetPersonEndpoint).Methods("GET")
+	router.HandleFunc("/people/{id}", personHandler.CreatePersonEndpoint).Methods("POST")
+	router.HandleFunc("/people/{id}", personHandler.DeletePersonEndpoint).Methods("DELETE")
 	log.Fatal(server.ListenAndServe())
 }
