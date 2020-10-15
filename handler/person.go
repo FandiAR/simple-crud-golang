@@ -10,7 +10,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func GetPersonEndpoint(w http.ResponseWriter, req *http.Request) {
+type Person struct{}
+
+func (p *Person) GetPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	people := models.PersonData()
 	params := mux.Vars(req)
 
@@ -25,13 +27,13 @@ func GetPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(&models.Person{})
 }
 
-func GetPeopleEndpoint(w http.ResponseWriter, req *http.Request) {
+func (p *Person) GetPeopleEndpoint(w http.ResponseWriter, req *http.Request) {
 	people := models.PersonData()
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(people)
 }
 
-func CreatePersonEndpoint(w http.ResponseWriter, req *http.Request) {
+func (p *Person) CreatePersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	people := models.PersonData()
 	params := mux.Vars(req)
 	var person models.Person
@@ -42,7 +44,7 @@ func CreatePersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(people)
 }
 
-func DeletePersonEndpoint(w http.ResponseWriter, req *http.Request) {
+func (p *Person) DeletePersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	people := models.PersonData()
 	params := mux.Vars(req)
 	itemId, _ := strconv.Atoi(params["id"])
