@@ -20,13 +20,13 @@ func (p *Person) GetPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 
 	itemId, err := strconv.ParseInt(string(params["id"]), 0, 64)
 	if err != nil {
-		w.WriteHeader(500)
+		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Error happened"))
 		return
 	}
 	person, err := p.personRepo.GetById(itemId)
 	if err != nil {
-		w.WriteHeader(404)
+		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("Person not found"))
 		return
 	}
@@ -37,7 +37,7 @@ func (p *Person) GetPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 func (p *Person) GetPeopleEndpoint(w http.ResponseWriter, req *http.Request) {
 	people, err := p.personRepo.GetAll()
 	if err != nil {
-		w.WriteHeader(404)
+		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte(err.Error()))
 		return
 	}
@@ -66,13 +66,13 @@ func (p *Person) DeletePersonEndpoint(w http.ResponseWriter, req *http.Request) 
 	params := mux.Vars(req)
 	itemId, err := strconv.ParseInt(string(params["id"]), 0, 64)
 	if err != nil {
-		w.WriteHeader(500)
+		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Error happened"))
 		return
 	}
 	err = p.personRepo.Delete(itemId)
 	if err != nil {
-		w.WriteHeader(500)
+		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Error happened"))
 		return
 	}

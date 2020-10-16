@@ -11,7 +11,7 @@ import (
 
 func main() {
 	router := mux.NewRouter()
-	endPoint := fmt.Sprintf(":%d", 9000)
+	endPoint := fmt.Sprintf(":%d", 8080)
 	maxHeaderBytes := 1 << 20
 	personHandler := handler.Person{}
 
